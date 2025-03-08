@@ -9,6 +9,7 @@ import { customer_address_1 } from "../constants.js";
 
 const getBalance = async (account) => {
   const balance = await contract.getBalance(account);
+  balance.wait();
   const balanceInInt = parseInt(balance.toString(), 10);
   return { balance, balanceInInt };
 };
