@@ -12,7 +12,11 @@ app.use(urlencoded({ extended: true }));
 app.use(express.static("public"));
 
 import UserRouter from './routes/user.routes.js';
+import TransportRouter from './routes/transport.routes.js';
+import adminRouter from './routes/admin.routes.js';
 
 app.use("/api/v1/users",UserRouter);
+app.use("/api/v1/transport",TransportRouter);
+app.use("/api/v1/admin",adminRouter);
 
 export {app}
