@@ -2,10 +2,11 @@ import { ApiError } from "../utils/ApiErrors.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
 import { contract } from "../index.js";
+import { hexZeroPad } from "ethers/lib/utils.js";
 
 const addCheckpoint = asyncHandler(async (req, res) => {
     const { id, city, longitude, latitude } = req.body;
-    if ([id, city, longitude, latitude].some((item) => item?.trim() === ""))
+    if ( city?.trim() === "" || id == null || longitude == null || latitude == null)
       throw new ApiError(400, "All fields are required");
     try {
       const tx = await contract.addCheckpoint(id, city, longitude, latitude);
